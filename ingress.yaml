@@ -32,7 +32,7 @@ metadata:
     #argocd.argoproj.io/health-check-ignored: "true"  # ← The magic line!
     #nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
-  ingressClassName: nginx
+  ingressClassName: nginx-nodeport
   rules:
   - host: demo.local
     http:
