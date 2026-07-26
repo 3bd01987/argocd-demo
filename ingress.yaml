@@ -26,7 +26,10 @@ metadata:
   annotations:
     argocd.argoproj.io/health: "ignore"
     argocd.argoproj.io/health-check-ignored: "true"
-    argocd.argoproj.io/sync-options: SkipDryRun
+    argocd.argoproj.io/sync-options: "SkipDryRunOnMissingResource=true"
+    #argocd.argoproj.io/health: "ignore"
+    #argocd.argoproj.io/health-check-ignored: "true"
+    #argocd.argoproj.io/sync-options: SkipDryRun
     #argocd.argoproj.io/tracking-id: demo-nginx:networking.k8s.io/Ingress:gitops-lab/demo-nginx
     #argocd.argoproj.io/sync-options: SkipDryRun
     #argocd.argoproj.io/health-check-ignored: "true"  # ← The magic line!
