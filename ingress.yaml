@@ -24,10 +24,13 @@ metadata:
   name: demo-nginx
   namespace: gitops-lab
   annotations:
-    argocd.argoproj.io/tracking-id: demo-nginx:networking.k8s.io/Ingress:gitops-lab/demo-nginx
+    argocd.argoproj.io/health: "ignore"
+    argocd.argoproj.io/health-check-ignored: "true"
     argocd.argoproj.io/sync-options: SkipDryRun
-    argocd.argoproj.io/health-check-ignored: "true"  # ← The magic line!
-    nginx.ingress.kubernetes.io/rewrite-target: /
+    #argocd.argoproj.io/tracking-id: demo-nginx:networking.k8s.io/Ingress:gitops-lab/demo-nginx
+    #argocd.argoproj.io/sync-options: SkipDryRun
+    #argocd.argoproj.io/health-check-ignored: "true"  # ← The magic line!
+    #nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   ingressClassName: nginx
   rules:
