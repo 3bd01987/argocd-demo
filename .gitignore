@@ -1,1 +1,4 @@
 ingress-nginx-controller.yaml
+ingress-nginx-controller-metal.yaml
+ip-pool.yaml
+l2-adv.yaml

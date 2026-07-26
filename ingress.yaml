@@ -1,21 +1,43 @@
+# apiVersion: networking.k8s.io/v1
+# kind: Ingress
+# metadata:
+#   name: demo-nginx
+#   namespace: gitops-lab
+#   annotations:
+#     nginx.ingress.kubernetes.io/rewrite-target: /
+# spec:
+#   ingressClassName: nginx
+#   rules:
+#     - host: demo.local
+#       http:
+#         paths:
+#           - path: /
+#             pathType: Prefix
+#             backend:
+#               service:
+#                 name: demo-nginx
+#                 port:
+#                   number: 80
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: demo-nginx
   namespace: gitops-lab
   annotations:
+    argocd.argoproj.io/tracking-id: demo-nginx:networking.k8s.io/Ingress:gitops-lab/demo-nginx
+    argocd.argoproj.io/sync-options: SkipDryRun
+    argocd.argoproj.io/health-check-ignored: "true"  # ← The magic line!
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   ingressClassName: nginx
   rules:
-    - host: demo.local
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: demo-nginx
-                port:
-                  number: 80
-
+  - host: demo.local
+    http:
+      paths:
+      - backend:
+          service:
+            name: demo-nginx
+            port:
+              number: 80
+        path: /
+        pathType: Prefix
